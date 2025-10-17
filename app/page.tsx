@@ -11,43 +11,63 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/10 via-background to-accent/5">
-        <div className="container mx-auto px-4 py-16 md:py-24">
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
-            <div className="flex flex-col gap-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-balance leading-tight">
-                Fresh Products Available for Online Order
+
+      {/* 🛍 Hero Banner (top) */}
+      <section className="relative bg-background py-4 md:py-6">
+        <div className="container mx-auto px-4">
+          <div className="relative h-[300px] md:h-[400px] lg:h-[480px] rounded-3xl overflow-hidden">
+            <Image
+              src="/fresh-market-produce-vegetables-fruits-display.jpg"
+              alt="Suzangaron Market Banner"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+            <div className="absolute inset-y-0 left-0 flex flex-col justify-center px-8 md:px-16 text-white max-w-lg">
+              <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
+                Your Trusted Local Market
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed">
-               Quality meat, homemade jams, and refreshing drinks from Suzangaron Market. Place your order and leave a note with your request.
+              <p className="text-lg mb-6 text-white/90">
+                Order online and get the freshest meat, jams, and drinks — with same-day pickup available.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" asChild className="text-base">
-                  <Link href="/categories">
-                    Shop Now
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild className="text-base bg-transparent">
-                  <Link href="/location">View Location</Link>
-                </Button>
-              </div>
-            </div>
-            <div className="relative h-[300px] md:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden">
-              <Image
-                src="/fresh-market-produce-vegetables-fruits-display.jpg"
-                alt="Fresh market products"
-                fill
-                className="object-cover"
-                priority
-              />
+              <Button size="lg" variant="secondary" asChild className="text-base font-medium">
+                <Link href="/categories">Shop Now</Link>
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* 🥦 Featured Products (immediately after hero) */}
+      <section className="py-12 md:py-16 bg-gradient-to-b from-background via-background to-secondary/20">
+        <div className="container mx-auto px-4 flex flex-col gap-10">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+                Fresh Picks of the Week 🛒
+              </h2>
+              <p className="text-lg text-muted-foreground mt-2">
+                Handpicked products from Suzangaron Market — straight from local farmers to your table.
+              </p>
+            </div>
+            <Button size="lg" asChild className="w-fit text-base">
+              <Link href="/categories">
+                View All Products
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 🌿 Features Section */}
       <section className="py-12 md:py-16 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="grid gap-6 md:grid-cols-3">
@@ -69,9 +89,9 @@ export default function HomePage() {
                   <Clock className="h-7 w-7 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Custom Notes</h3>
-<p className="text-muted-foreground leading-relaxed">
-  Add a personal note with your order — include your name, phone number, or any special request.
-</p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Add a personal note with your order — include your name, phone number, or any special request.
+                </p>
               </CardContent>
             </Card>
 
@@ -90,42 +110,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Products Section */}
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-3">
-              <h2 className="text-3xl md:text-4xl font-bold text-balance">Featured Products</h2>
-              <p className="text-lg text-muted-foreground text-pretty">
-                Discover our most popular items, handpicked for quality and freshness.
-              </p>
-            </div>
-
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {featuredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-
-            <div className="flex justify-center">
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/categories">
-                  View All Products
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
+      {/* 🧺 CTA Section */}
       <section className="py-12 md:py-16 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center gap-6 text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-balance">Ready to Order?</h2>
-            <p className="text-lg text-primary-foreground/90 text-pretty leading-relaxed">
-              Browse our full selection of fresh products and add your delivery preferences. We'll make sure everything
+            <h2 className="text-3xl md:text-4xl font-bold">Ready to Order?</h2>
+            <p className="text-lg text-primary-foreground/90 leading-relaxed">
+              Browse our full selection of fresh products and add your delivery preferences. We’ll make sure everything
               arrives just the way you want it.
             </p>
             <Button size="lg" variant="secondary" asChild className="text-base">
@@ -134,6 +125,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
     </div>
   )
 }
